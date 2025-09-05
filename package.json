@@ -1,0 +1,8 @@
+{
+  "name": "civic-issue-backend",
+  "version": "1.0.0",
+  "description": "Civic Issue Reporting Backend for Vercel",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
