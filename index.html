@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Civic Issue Reporting System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Skip to main content (accessibility) -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header Navigation -->
+  <header class="header" role="banner">
+    <nav class="nav container" role="navigation" aria-label="Main Navigation">
+      <div class="nav__brand">
+        <h1>Civic Reporter</h1>
+      </div>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#home" class="nav__link active" data-nav="home" role="link" tabindex="0">Home</a></li>
+        <li><a href="#report" class="nav__link" data-nav="report" role="link" tabindex="0">Report Issue</a></li>
+        <li><a href="#my-reports" class="nav__link" data-nav="my-reports" role="link" tabindex="0">My Reports</a></li>
+        <li><a href="#admin" class="nav__link" data-nav="admin" role="link" tabindex="0">Admin Dashboard</a></li>
+        <li class="nav__lang">
+          <label for="language-select" class="sr-only">Select Language</label>
+          <select id="language-select" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+        </li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation menu" aria-haspopup="true" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main" role="main">
+    <!-- Home Section -->
+    <section id="home" class="section active" tabindex="-1" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="container hero__content">
+          <h2 class="hero__title" id="home-title">Civic Issue Reporting System</h2>
+          <p class="hero__description">
+            Help improve your community by reporting civic issues. Our platform enables citizens to report problems and track their resolution in real-time.
+          </p>
+          <div class="hero__actions">
+            <button class="btn btn--primary btn--lg" data-nav="report" type="button">Report an Issue</button>
+            <button class="btn btn--outline btn--lg" data-nav="my-reports" type="button">View Reports</button>
+          </div>
+        </div>
+      </div>
+      <div class="stats" aria-label="Statistics">
+        <div class="container">
+          <div class="stats__grid">
+            <div class="stats__card" role="region" aria-labelledby="total-issues-label">
+              <h3 class="stats__number" id="total-issues">0</h3>
+              <p id="total-issues-label" class="stats__label">Total Issues</p>
+            </div>
+            <div class="stats__card" role="region" aria-labelledby="resolved-issues-label">
+              <h3 class="stats__number" id="resolved-issues">0</h3>
+              <p id="resolved-issues-label" class="stats__label">Resolved</p>
+            </div>
+            <div class="stats__card" role="region" aria-labelledby="pending-issues-label">
+              <h3 class="stats__number" id="pending-issues">0</h3>
+              <p id="pending-issues-label" class="stats__label">Pending</p>
+            </div>
+            <div class="stats__card" role="region" aria-labelledby="in-progress-issues-label">
+              <h3 class="stats__number" id="in-progress-issues">0</h3>
+              <p id="in-progress-issues-label" class="stats__label">In Progress</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report Issue Section -->
+    <section id="report" class="section" tabindex="-1" aria-labelledby="report-title" hidden>
+      <div class="container">
+        <div class="section__header">
+          <h2 id="report-title">Report an Issue</h2>
+          <p>Help us improve your community by reporting civic issues.</p>
+        </div>
+
+        <form class="report-form" id="report-form" aria-describedby="report-desc" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="issue-title">Issue Title <span aria-hidden="true">*</span></label>
+              <input type="text" id="issue-title" name="title" class="form-control" required aria-required="true" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="issue-category">Category <span aria-hidden="true">*</span></label>
+              <select id="issue-category" name="category" class="form-control" required aria-required="true">
+                <option value="">Select Category</option>
+                <option value="Pothole">Pothole</option>
+                <option value="Street Light">Street Light</option>
+                <option value="Water Supply">Water Supply</option>
+                <option value="Garbage">Garbage</option>
+                <option value="Traffic Signal">Traffic Signal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="issue-priority">Priority <span aria-hidden="true">*</span></label>
+              <select id="issue-priority" name="priority" class="form-control" required aria-required="true">
+                <option value="">Select Priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Emergency">Emergency</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="issue-location">Location <span aria-hidden="true">*</span></label>
+              <div class="location-input">
+                <input type="text" id="issue-location" name="location" class="form-control" placeholder="Enter address or location" required aria-required="true" />
+                <button type="button" class="btn btn--secondary btn--sm location-btn" id="get-location" aria-label="Get current location via GPS">
+                  📍 GPS
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="issue-description">Description <span aria-hidden="true">*</span></label>
+            <textarea id="issue-description" name="description" class="form-control" rows="4" required aria-required="true"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="issue-photo">Upload Photo</label>
+            <input type="file" id="issue-photo" name="photo" class="form-control" accept="image/*" aria-describedby="photo-preview" />
+            <div class="photo-preview" id="photo-preview" aria-live="polite" aria-atomic="true"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn--primary btn--lg btn--full-width" aria-label="Submit issue report">
+              Submit Issue Report
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- My Reports Section -->
+    <section id="my-reports" class="section" tabindex="-1" aria-labelledby="my-reports-title" hidden>
+      <div class="container">
+        <div class="section__header">
+          <h2 id="my-reports-title">My Reports</h2>
+          <p>Track the status of your submitted issues.</p>
+        </div>
+
+        <div class="reports-list" id="reports-list" role="region" aria-live="polite" aria-atomic="true" tabindex="0">
+          <!-- Reports dynamically populated here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Dashboard Section -->
+    <section id="admin" class="section" tabindex="-1" aria-labelledby="admin-title" hidden>
+      <div class="container">
+        <div class="section__header">
+          <h2 id="admin-title">Admin Dashboard</h2>
+          <p>Manage and update reported issues.</p>
+        </div>
+
+        <div class="admin-list" id="admin-list" role="region" aria-live="polite" aria-atomic="true" tabindex="0">
+          <!-- Admin reports dynamically populated here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2025 Civic Issue Reporting System. Building better communities together.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Messages -->
+  <div class="toast hidden" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast__content">
+      <span class="toast__message" id="toast-message"></span>
+      <button class="toast__close" aria-label="Close message" title="Close message">&times;</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+  <script>
+    // Simple client navigation to show/hide sections
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.nav__link, .hero__actions button');
+      const sections = document.querySelectorAll('main .section');
+
+      function setActiveSection(name) {
+        sections.forEach(section => {
+          if (section.id === name) {
+            section.hidden = false;
+            section.classList.add('active');
+          } else {
+            section.hidden = true;
+            section.classList.remove('active');
+          }
+        });
+
+        navLinks.forEach(link => {
+          if (link.getAttribute('data-nav') === name) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          const target = e.currentTarget.getAttribute('data-nav');
+          if (target) {
+            e.preventDefault();
+            setActiveSection(target);
+            document.getElementById('main').focus();
+          }
+        });
+      });
+
+      // Default to home on load
+      setActiveSection('home');
+
+      // Example: Toast close
+      const toast = document.getElementById('toast');
+      const toastClose = document.querySelector('.toast__close');
+      toastClose.addEventListener('click', () => {
+        toast.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
